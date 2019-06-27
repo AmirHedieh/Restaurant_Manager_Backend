@@ -4,10 +4,15 @@
 2- Start Apache & MySQL modules
 
 3- Clone project
+
 4- Install composer
+
 5- Run cmd
+
 6- Go to project directory 
+
 7- run "composer update"
+
 8- run "php artisan serve"
    SERVER RUNNING NOW
    
