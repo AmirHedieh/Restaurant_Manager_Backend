@@ -13,7 +13,11 @@
 
 7- run "composer update"
 
-8- run "php artisan serve"
+8- create a database using 'phpmyadmin' named restaurant
+
+9- run "php artisan migrate"
+
+10- run "php artisan serve"
 
    SERVER RUNNING NOW
    
