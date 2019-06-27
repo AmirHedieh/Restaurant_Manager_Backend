@@ -5,16 +5,21 @@ namespace App\Http\Controllers;
 use App\Custom\Utils;
 use App\Custom\Validators;
 use App\Item;
-use Hamcrest\Util;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller {
     public function index() {
-
+        return Utils::makeJsonResponse(
+            true,
+          Item::all()
+        );
     }
 
-    public function show() {
-
+    public function show($id) {
+        return Utils::makeJsonResponse(
+            true,
+            Item::find($id)
+        );
     }
 
     public function store(Request $request) {
@@ -42,7 +47,13 @@ class ItemController extends Controller {
 
     }
 
-    public function delete() {
-
+    public function delete($id) {
+        try {
+            $item = Item::find($id);
+            $item->delete();
+            return Utils::makeJsonResponse(true, null);
+        } catch (\Exception $exception) {
+            return Utils::makeJsonResponse(false, $exception->getMessage());
+        }
     }
 }

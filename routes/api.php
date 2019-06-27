@@ -22,4 +22,10 @@ Route::group(['middleware' => 'auth.jwt'], function () {
     Route::get('item', 'ItemController@index');
     Route::get('item/{id}', 'ItemController@show');
     Route::delete('item/{id}', 'ItemController@delete');
+
+    Route::post('order', 'OrderController@store');
+    Route::put('order/{id}', 'OrderController@update');
+    Route::get('order', 'OrderController@index');
+    Route::get('order/{id}', 'OrderController@show');
+    Route::delete('order/{id}', 'OrderController@delete');
 });

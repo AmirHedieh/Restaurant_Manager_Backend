@@ -36,11 +36,21 @@ class Validators {
         $rules = array(
             'category' => 'required',
             'name' => 'required',
-            'price' => 'required',
-            'count' => 'required',
-            'available' => 'required',
+            'price' => 'required|numeric',
+            'count' => 'required|numeric',
+            'available' => 'required|boolean',
             'description' => 'required',
 
+        );
+        $validator = Validator::make($request->all(),$rules);
+
+        return $validator;
+    }
+    public static function orderStoreValidator(Request $request){
+        $rules = array(
+            'state' => 'required',
+            'description' => 'required',
+            'totalCost' => 'required',
         );
         $validator = Validator::make($request->all(),$rules);
 
