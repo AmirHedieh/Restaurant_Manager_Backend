@@ -15,6 +15,13 @@
 
 8- create a database using 'phpmyadmin' named restaurant
 
+9- run "copy .env.example .env"
+
+10- go to .env file and replace these:
+DB_DATABASE=restaurant
+DB_USERNAME=root
+DB_PASSWORD=
+
 9- run "php artisan migrate"
 
 10- run "php artisan serve"
