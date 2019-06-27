@@ -22,9 +22,9 @@ DB_DATABASE=restaurant
 DB_USERNAME=root
 DB_PASSWORD=
 
-9- run "php artisan migrate"
+11- run "php artisan migrate"
 
-10- run "php artisan serve"
+12- run "php artisan serve"
 
    SERVER RUNNING NOW
    
