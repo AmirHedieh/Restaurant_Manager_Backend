@@ -14,6 +14,7 @@
 7- run "composer update"
 
 8- run "php artisan serve"
+
    SERVER RUNNING NOW
    
     *use postman to make requests to server.
