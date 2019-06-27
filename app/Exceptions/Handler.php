@@ -2,8 +2,14 @@
 
 namespace App\Exceptions;
 
+use App\Custom\Utils;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Exceptions\ThrottleRequestsException;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use Tymon\JWTAuth\Exceptions\TokenExpiredException;
+use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 
 class Handler extends ExceptionHandler
 {
@@ -46,6 +52,22 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if($exception instanceof UnauthorizedHttpException) { // no else-if because of returns
+            return Utils::makeJsonResponse(false,null);
+        }
+        if($exception instanceof  TokenInvalidException){
+            return Utils::makeJsonResponse(false,'invalid token');
+        }
+        if ($exception instanceof TokenExpiredException){
+            return Utils::makeJsonResponse(false,'token expired');
+        }
+        if ($exception instanceof JWTException){
+            return Utils::makeJsonResponse(false,'jwt exception');
+        }
+        if($exception instanceof ThrottleRequestsException) {
+            return Utils::makeJsonResponse(false,'req num passed');
+        }
+
         return parent::render($request, $exception);
     }
 }
