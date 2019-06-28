@@ -18,6 +18,12 @@ class CreateCommentsTable extends Migration
             $table->timestamps();
             $table->longText('message');
             $table->boolean('approved');
+
+            $table->unsignedInteger('order_id');
+            $table->foreign('order_id')
+                ->references('id')
+                ->on('orders')
+                ->onDelete('cascade');
         });
     }
 
