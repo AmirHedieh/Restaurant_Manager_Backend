@@ -25,9 +25,17 @@ class RegisterController extends Controller {
         $user->password = bcrypt($request->password);
         $user->role = 1;
 
+        $credentials = \request(['username', 'password']);
         try {
             $user->save();
-            return Utils::makeJsonResponse(true, $user );
+            $token = auth()->attempt($credentials);
+            $data = [
+                'id' => $user->id,
+                'username' => $user->username,
+                'role' => $user->role,
+                'token' => $token
+            ];
+            return Utils::makeJsonResponse(true, $data );
         } catch (\Exception $exception){
             return Utils::makeJsonResponse(false, $exception->getMessage() );
         }

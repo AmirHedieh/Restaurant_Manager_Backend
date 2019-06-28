@@ -46,6 +46,15 @@ class Validators {
 
         return $validator;
     }
+
+    public static function commentStoreValidator(Request $request){
+        $rules = array(
+            'message' => 'required',
+        );
+        $validator = Validator::make($request->all(),$rules);
+
+        return $validator;
+    }
     public static function orderStoreValidator(Request $request){
         $rules = array(
             'state' => 'required',

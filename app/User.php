@@ -54,4 +54,15 @@ class User extends Authenticatable implements  JWTSubject
     public function role(){
         return $this->hasOne(Role::class);
     }
+
+    public function orders() {
+        return $this->hasMany(Order::class);
+    }
+
+    public function isCustomer() {
+        if($this->role == 1)
+            return true;
+        else
+            return false;
+    }
 }

@@ -28,4 +28,8 @@ Route::group(['middleware' => 'auth.jwt'], function () {
     Route::get('order', 'OrderController@index');
     Route::get('order/{id}', 'OrderController@show');
     Route::delete('order/{id}', 'OrderController@delete');
+
+    Route::post('item/{id}/comments', '@CommentController@store');
+    Route::get('item/{id}/comments', '@CommentController@index');
+    Route::get('item/{id}/comments/{id}', '@CommentController@show');
 });
