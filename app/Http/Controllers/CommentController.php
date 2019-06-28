@@ -6,10 +6,16 @@ use App\Comment;
 use App\Custom\Utils;
 use App\Custom\Validators;
 use Illuminate\Http\Request;
+use JWTAuth;
 
 class CommentController extends Controller {
-    public function index(){
-        return Utils::makeJsonResponse(true, Comment::all());
+    protected $user;
+    public function __construct() {
+        $this->user = JWTAuth::parseToken()->authenticate();
+    }
+
+    public function index($item_id){
+//        $comments = $this->user->isCustomer() ?
     }
 
     public function store(Request $request, $item_id) {

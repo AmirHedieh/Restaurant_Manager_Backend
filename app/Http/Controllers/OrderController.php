@@ -35,6 +35,7 @@ class OrderController extends Controller {
             return Utils::makeJsonResponse(false, $validator->errors());
         }
         $order = new Order();
+        $order->items = $request->items;
         $order->user_id = $this->user->id;
         $order->state = $request->state;
         $order->description = $request->description;
