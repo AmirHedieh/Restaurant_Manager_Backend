@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Comment;
 use App\Custom\Utils;
 use App\Custom\Validators;
+use App\Item;
+use Hamcrest\Util;
 use Illuminate\Http\Request;
 use JWTAuth;
 
@@ -15,7 +17,9 @@ class CommentController extends Controller {
     }
 
     public function index($item_id){
-//        $comments = $this->user->isCustomer() ?
+        $comments = $this->user->isCustomer() ? Item::find($item_id)->comments()
+            : Comment::all();
+        return Utils::makeJsonResponse(true, $comments);
     }
 
     public function store(Request $request, $item_id) {
