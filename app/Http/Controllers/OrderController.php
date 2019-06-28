@@ -16,10 +16,10 @@ class OrderController extends Controller {
     }
 
     public function index() {
-        return Utils::makeJsonResponse(
-            true,
-            Order::all()
-        );
+        $orders = $this->user->isCustomer() ?
+            $this->user->orders()->get(['id', 'state', 'description', 'totalCost'])
+            : Order::all();
+        return Utils::makeJsonResponse(true, $orders);
     }
 
     public function show($id) {
