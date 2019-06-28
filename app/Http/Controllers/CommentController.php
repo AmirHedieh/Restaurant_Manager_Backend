@@ -8,15 +8,18 @@ use App\Custom\Validators;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller {
+    public function index(){
+        return Utils::makeJsonResponse(true, Comment::all());
+    }
+
     public function store(Request $request, $order_id) {
-        $validator = Validators::itemStoreValidator($request);
+        $validator = Validators::commentStoreValidator($request);
 
         if($validator->fails()) {
             return Utils::makeJsonResponse(false, $validator->errors());
         }
 
         $comment = new Comment();
-
         $comment->order_id = $order_id;
         $comment->message = $request->message;
         $comment->approved = false;

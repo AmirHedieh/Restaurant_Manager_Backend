@@ -15,4 +15,12 @@ class Order extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function public_data() {
+        return [
+            'id' => $this->id,
+            'state' => $this->state,
+            'description' => $this->description,
+            'totalCost' => $this->totalCost
+        ];
+    }
 }
