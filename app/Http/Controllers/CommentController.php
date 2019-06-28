@@ -12,7 +12,7 @@ class CommentController extends Controller {
         return Utils::makeJsonResponse(true, Comment::all());
     }
 
-    public function store(Request $request, $order_id) {
+    public function store(Request $request, $item_id) {
         $validator = Validators::commentStoreValidator($request);
 
         if($validator->fails()) {
@@ -20,7 +20,7 @@ class CommentController extends Controller {
         }
 
         $comment = new Comment();
-        $comment->order_id = $order_id;
+        $comment->item_id = $item_id;
         $comment->message = $request->message;
         $comment->approved = false;
 
