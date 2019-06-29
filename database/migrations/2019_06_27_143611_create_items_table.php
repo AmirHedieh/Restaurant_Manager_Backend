@@ -22,6 +22,7 @@ class CreateItemsTable extends Migration
             $table->string('count');
             $table->boolean('available');
             $table->longText('description');
+            $table->string('image_url');
         });
     }
 
