@@ -21,8 +21,8 @@ class CreateItemsTable extends Migration
             $table->string('price');
             $table->string('count');
             $table->boolean('available');
-            $table->longText('description');
-            $table->string('image_url');
+            $table->longText('description')->nullable();
+            $table->string('image_url')->nullable();
         });
     }
 
