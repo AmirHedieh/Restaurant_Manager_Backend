@@ -9,9 +9,24 @@ use Illuminate\Http\Request;
 
 class ItemController extends Controller {
     public function index() {
+        $items = Item::all();
+        $data = [];
+        foreach ($items as $item) {
+           $arr = $item->comments()->get(['id', 'message', 'approved', 'item_id']);
+               $obj = [
+                   'category' => $item->category,
+                   'name' => $item->name,
+                   'price' => $item->price,
+                   'count' => $item->count,
+                   'available' => $item->available,
+                   'description' => $item->description,
+                   'comments' => $arr
+               ];
+               array_push($data, $obj);
+        }
         return Utils::makeJsonResponse(
             true,
-          Item::all()
+          $data
         );
     }
 
@@ -34,7 +49,6 @@ class ItemController extends Controller {
         $item->count = $request->count;
         $item->available = $request->available;
         $item->description = $request->description;
-
         try{
             $item->save();
             return Utils::makeJsonResponse(true, $item);

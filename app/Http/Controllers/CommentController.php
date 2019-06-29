@@ -22,6 +22,10 @@ class CommentController extends Controller {
         return Utils::makeJsonResponse(true, $comments);
     }
 
+    public function show($item_id,$id){
+        return Utils::makeJsonResponse(true, Comment::find($id));
+    }
+
     public function store(Request $request, $item_id) {
         $validator = Validators::commentStoreValidator($request);
 
