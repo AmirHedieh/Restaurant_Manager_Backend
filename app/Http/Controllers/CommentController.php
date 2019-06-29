@@ -16,7 +16,8 @@ class CommentController extends Controller {
     }
 
     public function index($item_id){
-        $comments = $this->user->isCustomer() ? Item::find($item_id)->comments()
+        $comments = $this->user->isCustomer() ?
+            Item::find($item_id)->comments()->get(['id', 'message', 'approved', 'item_id'])
             : Comment::all();
         return Utils::makeJsonResponse(true, $comments);
     }
