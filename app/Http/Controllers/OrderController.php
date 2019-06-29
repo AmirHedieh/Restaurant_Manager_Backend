@@ -17,7 +17,7 @@ class OrderController extends Controller {
 
     public function index() {
         $orders = $this->user->isCustomer() ?
-            $this->user->orders()->get(['id', 'state', 'description', 'totalCost'])
+            $this->user->orders()->get(['items','id', 'state', 'description', 'totalCost'])
             : Order::all();
         return Utils::makeJsonResponse(true, $orders);
     }
